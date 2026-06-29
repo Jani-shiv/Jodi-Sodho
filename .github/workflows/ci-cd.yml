@@ -23,7 +23,7 @@ jobs:
 
     steps:
     - name: Checkout Code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up PHP 8.1
       uses: shivammathur/setup-php@v2
@@ -69,7 +69,7 @@ jobs:
 
     steps:
     - name: Checkout Code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Build Package Artifact
       run: |
@@ -79,7 +79,7 @@ jobs:
         zip -r build/jodi_sodho_release.zip admin/ website/ jodi_sodho_schema.sql install.php README.md
 
     - name: Upload Build Artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: jodi-sodho-build-release
         path: build/jodi_sodho_release.zip
