@@ -1,9 +1,9 @@
 <?php
 // Jodi Sodho Database Connection Config
-define('DB_HOST', '127.0.0.1');
+define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', 'your_db_password');
-define('DB_NAME', 'jodi_sodho');
+define('DB_NAME', 'jodi_sodho_app');
 
 try {
     $pdo = new PDO(
