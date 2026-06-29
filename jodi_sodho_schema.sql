@@ -5,7 +5,8 @@
 -- Charset: utf8mb4 / Collation: utf8mb4_unicode_ci
 -- =====================================================
 
-CREATE DATABASE IF NOT EXISTS jodi_sodho;
+DROP DATABASE IF EXISTS jodi_sodho;
+CREATE DATABASE jodi_sodho;
 USE jodi_sodho;
 
 SET FOREIGN_KEY_CHECKS = 0;

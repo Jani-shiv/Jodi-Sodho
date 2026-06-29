@@ -36,6 +36,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $step === 2) {
 
         if (file_exists($sqlPath)) {
             $sql = file_get_contents($sqlPath);
+            // Dynamically replace default database name jodi_sodho with user submitted name
+            $sql = str_replace(
+                ['DROP DATABASE IF EXISTS jodi_sodho;', 'CREATE DATABASE jodi_sodho;', 'USE jodi_sodho;', 'jodi_sodho.'],
+                ['DROP DATABASE IF EXISTS `' . $db_name . '`;', 'CREATE DATABASE `' . $db_name . '`;', 'USE `' . $db_name . '`;', '`' . $db_name . '`.'],
+                $sql
+            );
             // Execute SQL script
             $pdo->exec($sql);
         } else {
