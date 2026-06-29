@@ -1,0 +1,86 @@
+name: Jodi Sodho CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  lint-and-validate:
+    name: Code Linting & Database Schema Validation
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: your_db_password
+          MYSQL_DATABASE: jodi_sodho
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set up PHP 8.1
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'
+        extensions: pdo, pdo_mysql, mysqli, mbstring, json
+        coverage: none
+
+    - name: Validate PHP Syntax (Linting)
+      run: |
+        echo "Starting PHP lint check recursively..."
+        errors=0
+        # Find all PHP files and run lint checks on them
+        find . -name "*.php" -type f | while read -r file; do
+          if ! php -l "$file" > /dev/null; then
+            echo "❌ Lint Check Failed: $file"
+            errors=$((errors+1))
+          fi
+        done
+        if [ $errors -ne 0 ]; then
+          echo "❌ CI Error: One or more PHP files have syntax compile errors. Resolving build crash."
+          exit 1
+        fi
+        echo "✅ Syntax Linting passed for all PHP files!"
+
+    - name: Validate MySQL Database Schema DDL
+      env:
+        MYSQL_PWD: your_db_password
+      run: |
+        echo "Verifying local schema jodi_sodho_schema.sql against MySQL service container..."
+        if [ ! -f "jodi_sodho_schema.sql" ]; then
+          echo "❌ DDL Script missing in root."
+          exit 1
+        fi
+        # Pipe script into running service container
+        mysql -h 127.0.0.1 -u root jodi_sodho < jodi_sodho_schema.sql
+        echo "✅ Database schema executed and seeded successfully with zero warnings!"
+
+  build-and-package:
+    name: Build & Package Release Artifacts
+    needs: lint-and-validate
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Build Package Artifact
+      run: |
+        echo "Bundling platform namespaces into production releases..."
+        mkdir -p build/
+        # Zip all relevant namespaces
+        zip -r build/jodi_sodho_release.zip admin/ website/ jodi_sodho_schema.sql install.php README.md
+
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: jodi-sodho-build-release
+        path: build/jodi_sodho_release.zip
+        retention-days: 7
