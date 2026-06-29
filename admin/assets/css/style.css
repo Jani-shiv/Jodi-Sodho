@@ -1,0 +1,781 @@
+/* Jodi Sodho – Neobrutalist Glassmorphism Theme CSS */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --primary: #ff3b68;
+    --primary-rgb: 255, 59, 104;
+    --primary-light: #fff0f3;
+    --primary-dark: #cc1b44;
+    --secondary: #7b3feb;
+    --secondary-rgb: 123, 63, 235;
+    --secondary-light: #f3effb;
+    --secondary-dark: #561ebb;
+    --accent: #ffb800;
+    --accent-light: #fffcf0;
+    --dark: #1f1a24;
+    --light: #f8f9fa;
+    --body-bg: #fff6f8; /* Soft warm pastel pink background */
+    --card-bg: rgba(255, 255, 255, 0.75); /* Translucent glass background */
+    --text-main: #1f1a24;
+    --text-muted: #56505a;
+    --border-color: #1f1a24; /* Strong outline color */
+    
+    --neo-border: 3px solid var(--border-color);
+    --neo-border-thin: 2px solid var(--border-color);
+    
+    --neo-shadow-sm: 4px 4px 0px var(--border-color);
+    --neo-shadow-md: 7px 7px 0px var(--border-color);
+    --neo-shadow-lg: 12px 12px 0px var(--border-color);
+    
+    --font-main: 'Poppins', sans-serif;
+    --border-radius-sm: 4px;
+    --border-radius-md: 10px;
+    --border-radius-lg: 16px;
+    
+    --transition-fast: 0.1s ease;
+    --transition-normal: 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Quirky bounce */
+}
+
+/* Global resets & Neobrutalist layouts */
+body {
+    font-family: var(--font-main);
+    background-color: var(--body-bg);
+    color: var(--text-main);
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 800;
+    color: var(--dark);
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+}
+
+a {
+    color: var(--secondary);
+    text-decoration: underline;
+    font-weight: 600;
+    transition: var(--transition-fast);
+}
+a:hover {
+    color: var(--primary);
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-track {
+    background: var(--light);
+    border-left: var(--neo-border);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border: 2px solid var(--dark);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary);
+}
+
+main {
+    flex: 1;
+}
+
+/* Neobrutalist Buttons */
+.btn-primary {
+    background-color: var(--primary);
+    color: #fff !important;
+    border: var(--neo-border) !important;
+    box-shadow: var(--neo-shadow-sm);
+    border-radius: var(--border-radius-md);
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.75rem 1.75rem;
+    transition: var(--transition-fast);
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+    background-color: #ff547b !important;
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px var(--border-color);
+}
+.btn-primary:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0px 0px 0px var(--border-color);
+}
+
+.btn-outline-primary {
+    background-color: #fff;
+    color: var(--dark) !important;
+    border: var(--neo-border) !important;
+    box-shadow: var(--neo-shadow-sm);
+    border-radius: var(--border-radius-md);
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.7rem 1.65rem;
+    transition: var(--transition-fast);
+}
+.btn-outline-primary:hover, .btn-outline-primary:focus, .btn-outline-primary:active {
+    background-color: var(--primary-light) !important;
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px var(--border-color);
+}
+.btn-outline-primary:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0px 0px 0px var(--border-color);
+}
+
+.btn-secondary {
+    background-color: var(--secondary);
+    color: #fff !important;
+    border: var(--neo-border) !important;
+    box-shadow: var(--neo-shadow-sm);
+    border-radius: var(--border-radius-md);
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.75rem 1.75rem;
+    transition: var(--transition-fast);
+}
+.btn-secondary:hover {
+    background-color: #8c56fa !important;
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px var(--border-color);
+}
+
+/* Neobrutalist Badges */
+.badge-verified {
+    background-color: #00ff66;
+    color: var(--dark);
+    font-weight: 700;
+    border: var(--neo-border-thin);
+    border-radius: var(--border-radius-sm);
+    padding: 0.3rem 0.6rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+.badge-premium {
+    background-color: var(--accent);
+    color: var(--dark);
+    font-weight: 700;
+    border: var(--neo-border-thin);
+    border-radius: var(--border-radius-sm);
+    padding: 0.3rem 0.6rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+/* Glassmorphism Neobrutalist Navbar */
+.navbar-custom {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: var(--neo-border);
+    padding: 1rem;
+    z-index: 1050;
+}
+.navbar-custom .navbar-brand {
+    font-weight: 800;
+    font-size: 1.6rem;
+    color: var(--dark) !important;
+    text-shadow: 2px 2px 0px var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-transform: uppercase;
+}
+.navbar-custom .nav-link {
+    color: var(--dark) !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem !important;
+    border-radius: var(--border-radius-md);
+    border: 2px solid transparent;
+    transition: var(--transition-fast);
+}
+.navbar-custom .nav-link:hover,
+.navbar-custom .nav-link.active {
+    background-color: var(--primary-light) !important;
+    border: var(--neo-border-thin) !important;
+    transform: translate(-1px, -1px);
+    box-shadow: 2px 2px 0px var(--border-color);
+}
+
+/* Footer layout */
+.footer-custom {
+    background-color: var(--dark);
+    color: #fff;
+    padding: 4rem 0 2rem;
+    font-size: 0.95rem;
+    border-top: var(--neo-border);
+}
+.footer-custom h5 {
+    color: #fff;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 0px var(--secondary);
+}
+.footer-custom a {
+    color: #f3effb;
+    text-decoration: underline;
+}
+.footer-custom a:hover {
+    color: var(--primary);
+}
+.footer-custom .social-icons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: #fff;
+    border: var(--neo-border-thin);
+    box-shadow: var(--neo-shadow-sm);
+    border-radius: var(--border-radius-sm);
+    color: var(--dark);
+    margin-right: 0.5rem;
+}
+.footer-custom .social-icons a:hover {
+    background: var(--primary);
+    color: #fff;
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px #fff;
+}
+
+/* Cards (Glassmorphism backdrop + Neobrutalist outline & shadow) */
+.card-premium {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: var(--neo-border);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--neo-shadow-md);
+    transition: var(--transition-normal);
+}
+.card-premium:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: var(--neo-shadow-lg);
+}
+
+/* Profile Card Styling */
+.profile-card {
+    position: relative;
+    border-radius: var(--border-radius-lg);
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: var(--neo-border);
+    box-shadow: var(--neo-shadow-md);
+    transition: var(--transition-normal);
+    overflow: hidden;
+}
+.profile-card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: var(--neo-shadow-lg);
+}
+.profile-card-img-wrapper {
+    position: relative;
+    height: 280px;
+    overflow: hidden;
+    border-bottom: var(--neo-border);
+}
+.profile-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.profile-card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+    padding: 1.5rem 1rem 0.8rem;
+    color: #fff;
+}
+.profile-card-overlay h5 {
+    color: #fff !important;
+    text-shadow: 1px 1px 2px #000;
+}
+.profile-card-badges {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 2;
+}
+.profile-card-details {
+    padding: 1.2rem;
+}
+.profile-card-actions {
+    display: flex;
+    border-top: var(--neo-border);
+    background-color: var(--light);
+}
+.profile-card-action-btn {
+    flex: 1;
+    text-align: center;
+    padding: 0.85rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-main);
+    border: none;
+    background: transparent;
+    transition: var(--transition-fast);
+}
+.profile-card-action-btn:not(:last-child) {
+    border-right: var(--neo-border);
+}
+.profile-card-action-btn:hover {
+    background-color: var(--primary-light);
+    color: var(--primary);
+}
+
+/* Pricing Card Layout */
+.pricing-card {
+    padding: 2.5rem 2rem;
+    border-radius: var(--border-radius-lg);
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    border: var(--neo-border);
+    text-align: center;
+    position: relative;
+    transition: var(--transition-normal);
+    box-shadow: var(--neo-shadow-md);
+}
+.pricing-card.premium-tier {
+    background-color: var(--primary-light);
+    border-width: 4px;
+    box-shadow: var(--neo-shadow-lg);
+    transform: scale(1.02);
+}
+.pricing-card.premium-tier::before {
+    content: "RECOMMENDED";
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: var(--dark);
+    font-size: 0.75rem;
+    font-weight: 800;
+    border: var(--neo-border-thin);
+    padding: 0.3rem 1rem;
+    box-shadow: var(--neo-shadow-sm);
+    border-radius: var(--border-radius-sm);
+}
+.pricing-card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: var(--neo-shadow-lg);
+}
+.pricing-card.premium-tier:hover {
+    transform: translate(-3px, -3px) scale(1.03);
+    box-shadow: 14px 14px 0px var(--border-color);
+}
+.pricing-price {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--dark);
+    margin: 1.5rem 0;
+    text-shadow: 2px 2px 0px #fff;
+}
+.pricing-price span {
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+.pricing-features {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+    text-align: left;
+}
+.pricing-features li {
+    padding: 0.6rem 0;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 600;
+}
+.pricing-features li i {
+    color: #00ff66;
+    font-size: 1.2rem;
+    -webkit-text-stroke: 1px var(--dark);
+}
+.pricing-features li.disabled {
+    color: var(--text-muted);
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+.pricing-features li.disabled i {
+    color: var(--text-muted);
+}
+
+/* Neobrutalist Forms */
+.form-control, .form-select {
+    border: var(--neo-border) !important;
+    border-radius: var(--border-radius-md) !important;
+    padding: 0.8rem 1.2rem !important;
+    font-weight: 600;
+    background-color: #fff !important;
+    box-shadow: var(--neo-shadow-sm) !important;
+    transition: var(--transition-fast) !important;
+}
+.form-control:focus, .form-select:focus {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px var(--border-color) !important;
+    background-color: var(--primary-light) !important;
+}
+.form-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    padding: 3rem 2.5rem;
+    border-radius: var(--border-radius-lg);
+    border: var(--neo-border);
+    box-shadow: var(--neo-shadow-lg);
+}
+
+/* Wizard step nodes */
+.wizard-steps {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+    position: relative;
+}
+.wizard-steps::before {
+    content: "";
+    position: absolute;
+    top: 22px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background-color: var(--dark);
+    z-index: 1;
+}
+.wizard-step-node {
+    position: relative;
+    z-index: 2;
+    background: #fff;
+    border: var(--neo-border);
+    width: 48px;
+    height: 48px;
+    border-radius: var(--border-radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    box-shadow: var(--neo-shadow-sm);
+    transition: var(--transition-fast);
+}
+.wizard-step-node.active {
+    background-color: var(--primary);
+    color: #fff;
+    box-shadow: 4px 4px 0px var(--secondary);
+    transform: scale(1.1);
+}
+.wizard-step-node.completed {
+    background-color: var(--secondary);
+    color: #fff;
+}
+
+/* Dashboards layout */
+.dashboard-container {
+    display: flex;
+    min-height: calc(100vh - 73px);
+}
+.sidebar-custom {
+    width: 280px;
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    border-right: var(--neo-border);
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+.sidebar-custom.bg-dark {
+    background-color: var(--dark) !important;
+    border-right: var(--neo-border);
+}
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 1.2rem;
+    border-radius: var(--border-radius-md);
+    color: var(--text-main);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    border: 2px solid transparent;
+    transition: var(--transition-fast);
+}
+.sidebar-link:hover, .sidebar-link.active {
+    background-color: var(--primary-light);
+    color: var(--primary);
+    border: var(--neo-border-thin);
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0px var(--border-color);
+}
+.sidebar-link.active-admin {
+    background-color: var(--secondary-light) !important;
+    color: var(--secondary) !important;
+    border: var(--neo-border-thin) !important;
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0px var(--border-color);
+}
+.dashboard-content {
+    flex: 1;
+    padding: 2.5rem;
+    background-color: var(--body-bg);
+    overflow-y: auto;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, rgba(255, 59, 104, 0.05) 0%, rgba(123, 63, 235, 0.03) 100%);
+    border-bottom: var(--neo-border);
+    padding: 6rem 0;
+    position: relative;
+}
+.hero-search-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    border-radius: var(--border-radius-lg);
+    border: var(--neo-border);
+    box-shadow: var(--neo-shadow-lg);
+    padding: 2.5rem;
+}
+
+/* Messages inbox components */
+.chat-window {
+    height: 600px;
+    background-color: var(--card-bg);
+    backdrop-filter: blur(12px);
+    border: var(--neo-border);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--neo-shadow-md);
+    display: flex;
+    overflow: hidden;
+}
+.chat-users-list {
+    width: 320px;
+    border-right: var(--neo-border);
+    display: flex;
+    flex-direction: column;
+}
+.chat-messages-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255,255,255,0.4);
+}
+.chat-user-item {
+    padding: 1.2rem 1rem;
+    border-bottom: var(--neo-border-thin);
+    cursor: pointer;
+    transition: var(--transition-fast);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+.chat-user-item:hover, .chat-user-item.active {
+    background-color: var(--primary-light);
+}
+.chat-user-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--border-radius-sm);
+    border: var(--neo-border-thin);
+    object-fit: cover;
+}
+.chat-message-bubble {
+    max-width: 70%;
+    padding: 0.85rem 1.3rem;
+    border: var(--neo-border-thin);
+    border-radius: var(--border-radius-md);
+    margin-bottom: 1rem;
+    box-shadow: var(--neo-shadow-sm);
+}
+.chat-message-sent {
+    background-color: var(--primary);
+    color: #fff;
+    align-self: flex-end;
+}
+.chat-message-sent div, .chat-message-sent span {
+    color: #fff !important;
+}
+.chat-message-received {
+    background-color: #fff;
+    color: var(--text-main);
+    align-self: flex-start;
+}
+
+/* Image thumbnails */
+.gallery-thumbnail {
+    position: relative;
+    border-radius: var(--border-radius-md);
+    border: var(--neo-border);
+    box-shadow: var(--neo-shadow-sm);
+    overflow: hidden;
+    cursor: pointer;
+}
+.gallery-thumbnail-img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    transition: var(--transition-fast);
+}
+.gallery-thumbnail:hover .gallery-thumbnail-img {
+    transform: scale(1.05);
+}
+.gallery-thumbnail-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(123, 63, 235, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    color: #fff;
+    font-size: 1.4rem;
+    transition: var(--transition-fast);
+}
+.gallery-thumbnail:hover .gallery-thumbnail-overlay {
+    opacity: 1;
+}
+
+/* Stat widgets styling */
+.widget-stat-card {
+    padding: 1.5rem;
+    border-radius: var(--border-radius-md);
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    border: var(--neo-border);
+    box-shadow: var(--neo-shadow-sm);
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    transition: var(--transition-fast);
+}
+.widget-stat-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--neo-shadow-md);
+}
+.widget-stat-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--border-radius-sm);
+    border: var(--neo-border-thin);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+}
+.widget-stat-icon.pink { background-color: var(--primary-light); color: var(--primary); }
+.widget-stat-icon.purple { background-color: var(--secondary-light); color: var(--secondary); }
+.widget-stat-icon.orange { background-color: var(--accent-light); color: var(--accent); }
+.widget-stat-icon.success { background-color: #d4edda; color: #28a745; }
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+    .dashboard-container {
+        flex-direction: column;
+    }
+    .sidebar-custom {
+        width: 100%;
+        border-right: none;
+        border-bottom: var(--neo-border);
+        padding: 1rem;
+    }
+    .sidebar-menu-wrapper {
+        display: flex;
+        overflow-x: auto;
+        gap: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+    .sidebar-link {
+        margin-bottom: 0;
+        white-space: nowrap;
+        padding: 0.6rem 1rem;
+    }
+    .chat-window {
+        flex-direction: column;
+        height: auto;
+    }
+    .chat-users-list {
+        width: 100%;
+        height: 200px;
+        border-right: none;
+        border-bottom: var(--neo-border);
+    }
+    .chat-messages-container {
+        height: 380px;
+    }
+    .hero-section {
+        padding: 4rem 0;
+    }
+}
+
+/* Alert notifications styles */
+.alert {
+    border: var(--neo-border) !important;
+    border-radius: var(--border-radius-md) !important;
+    box-shadow: var(--neo-shadow-sm) !important;
+    color: var(--dark) !important;
+}
+.alert-custom-pink { background-color: var(--primary-light) !important; }
+.alert-custom-purple { background-color: var(--secondary-light) !important; }
+.alert .btn-close {
+    border: var(--neo-border-thin);
+    opacity: 1;
+    background-color: #fff;
+    padding: 0.5rem;
+    border-radius: var(--border-radius-sm);
+}
+
+.table {
+    border: var(--neo-border);
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: var(--neo-shadow-sm);
+}
+.table th, .table td {
+    border: var(--neo-border-thin) !important;
+    padding: 1rem !important;
+}
+.table thead {
+    background-color: var(--primary-light);
+}
+
+.accordion {
+    border: var(--neo-border);
+    border-radius: var(--border-radius-md) !important;
+    overflow: hidden;
+    box-shadow: var(--neo-shadow-md);
+}
+.accordion-item {
+    border-bottom: var(--neo-border-thin) !important;
+    background-color: var(--card-bg);
+}
+.accordion-button {
+    font-weight: 800;
+    color: var(--dark) !important;
+    background-color: transparent !important;
+    padding: 1.25rem !important;
+}
+.accordion-button:not(.collapsed) {
+    background-color: var(--primary-light) !important;
+    border-bottom: var(--neo-border-thin);
+}
