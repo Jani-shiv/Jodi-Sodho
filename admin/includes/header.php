@@ -1,4 +1,7 @@
 <?php
+if (file_exists(__DIR__ . '/db.php')) {
+    include_once __DIR__ . '/db.php';
+}
 $current_page = basename($_SERVER['PHP_SELF']);
 $is_admin = (strpos($current_page, 'admin-') === 0);
 $is_user = (
